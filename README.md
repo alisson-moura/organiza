@@ -1,81 +1,126 @@
-# Turborepo starter
+# Organiza - SaaS para Gestão de Listas de Compras em Grupo
 
-This is an official starter Turborepo.
+**Organiza** é um sistema SaaS multi-tenant que permite a criação e o gerenciamento de listas de compras para grupos informais, como amigos ou familiares. Com ele, os usuários podem formar grupos colaborativos para planejar e acompanhar compras de maneira organizada e eficiente. O sistema permite definir diferentes níveis de permissão para cada papel, garantindo controle sobre as ações permitidas, como criar, editar ou finalizar listas de compras.
 
-## Using this example
+---
 
-Run the following command:
+## Funcionalidades
 
-```sh
-npx create-turbo@latest
-```
+### Funcionalidades Gerais
 
-## What's inside?
+- **Criar conta de usuário com e-mail e senha**
+  - Formulário de cadastro para novos usuários, com validação de e-mail e senha.
+  - Armazenamento seguro dos dados do usuário e envio de e-mail de confirmação, se necessário.
 
-This Turborepo includes the following packages/apps:
+- **Realizar login**
+  - Formulário de login para autenticação de usuários.
+  - Validação das credenciais e estabelecimento de sessão ou geração de token JWT.
 
-### Apps and Packages
+- **Recuperar senha**
+  - Formulário para solicitação de recuperação de senha com envio de e-mail seguro.
+  - Página para redefinição de senha e atualização dos dados no banco de dados.
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+---
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+### Funcionalidades de Grupos
 
-### Utilities
+- **Criar grupo**
+  - Formulário para criação de grupo, incluindo nome e descrição.
+  - Armazenamento do grupo no banco de dados e atribuição do usuário como Líder.
 
-This Turborepo has some additional tools already setup for you:
+- **Visualizar grupo**
+  - Página de detalhes do grupo, com informações de nome, descrição, membros e listas.
+  - Exibição das permissões e ações disponíveis com base no papel do usuário.
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+- **Editar grupo (somente Líder e Organizador)**
+  - Formulário para atualização do nome e descrição do grupo.
+  - Atualização das informações do grupo no banco de dados.
 
-### Build
+---
 
-To build all apps and packages, run the following command:
+### Funcionalidades de Membros
 
-```
-cd my-turborepo
-pnpm build
-```
+- **Convidar membros**
+  - Formulário para envio de convite por e-mail com função especificada (Líder, Organizador, Participante ou Observador).
+  - Armazenamento do convite até que o usuário aceite.
 
-### Develop
+- **Cancelar convite**
+  - Opção para cancelamento de convites pendentes, com remoção do banco de dados.
 
-To develop all apps and packages, run the following command:
+- **Listar membros do grupo**
+  - Lista de membros com filtros por nome e função.
 
-```
-cd my-turborepo
-pnpm dev
-```
+- **Alterar função de membro (somente Líder)**
+  - Opção para o Líder modificar a função de um membro, com notificação do membro.
 
-### Remote Caching
+- **Ativar/desativar membro (somente Líder)**
+  - Ação para ativar ou desativar membros, com atualização de status e feedback visual.
 
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+- **Atualizar informações de membros**
+  - Líder e Organizador podem atualizar informações de qualquer membro.
+  - Participantes e Observadores podem atualizar apenas suas próprias informações.
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
+---
 
-```
-cd my-turborepo
-npx turbo login
-```
+### Funcionalidades de Listas de Compras
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+- **Criar listas de compras**
+  - Formulário para criar listas de compras, incluindo nome e descrição.
+  - Armazenamento das listas no banco de dados, associadas ao grupo.
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+- **Editar listas de compras**
+  - Edição de nome, descrição e status da lista por Líder e Organizador.
 
-```
-npx turbo link
-```
+- **Visualizar listas de compras**
+  - Exibição de todas as listas do grupo, permitindo acesso a detalhes e status.
 
-## Useful Links
+- **Adicionar itens à lista de compras (somente Líder e Organizador)**
+  - Formulário para adição de novos itens à lista, com atualização no banco de dados.
 
-Learn more about the power of Turborepo:
+- **Dar check/uncheck em itens da lista**
+  - Ação de check/uncheck para cada item, permitindo que Participantes e superiores marquem/desmarquem itens.
 
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+- **Finalizar lista de compras**
+  - Lógica para finalização automática da lista quando todos os itens estiverem marcados.
+  - Opção para finalização manual por Líder ou Organizador.
+
+---
+
+### Outras Funcionalidades e Detalhes
+
+- **Notificações**
+  - Sistema de notificações para eventos importantes, como convites aceitos e listas finalizadas.
+  - Configuração de e-mails e, opcionalmente, notificações dentro do app.
+
+- **Perfil de usuário**
+  - Página de perfil para atualização de informações pessoais, com restrições conforme o papel do usuário.
+
+---
+
+## Permissões por Papel
+
+| Função                             | Líder | Organizador | Participante | Observador |
+|------------------------------------|-------|-------------|--------------|------------|
+| Criar conta                        | ✅    | ✅          | ✅           | ✅         |
+| Realizar login                     | ✅    | ✅          | ✅           | ✅         |
+| Recuperar senha                    | ✅    | ✅          | ✅           | ✅         |
+| Convidar membros                   | ✅    | ✅          | ❌           | ❌         |
+| Cancelar convite                   | ✅    | ✅          | ❌           | ❌         |
+| Criar grupo                        | ✅    | ✅          | ❌           | ❌         |
+| Ver grupo                          | ✅    | ✅          | ✅           | ✅         |
+| Atualizar grupo                    | ✅    | ✅          | ❌           | ❌         |
+| Finalizar lista                    | ✅    | ✅          | ❌           | ❌         |
+| Alterar função de membro           | ✅    | ❌          | ❌           | ❌         |
+| Ativar/desativar membro            | ✅    | ❌          | ❌           | ❌         |
+| Listar membros                     | ✅    | ✅          | ✅           | ✅         |
+| Atualizar informações de membros   | ✅    | ⚠️         | ⚠️          | ⚠️        |
+| Criar listas                       | ✅    | ✅          | ❌           | ❌         |
+| Editar listas                      | ✅    | ✅          | ❌           | ❌         |
+| Ver listas                         | ✅    | ✅          | ✅           | ✅         |
+| Dar check/uncheck em itens         | ✅    | ✅          | ✅           | ❌         |
+| Atualizar informações da conta     | ✅    | ✅          | ✅           | ✅         |
+| Finalizar listas                   | ✅    | ✅          | ✅           | ✅         |
+
+### Condições
+- **Líder e Organizador**: Podem atualizar informações de qualquer membro.
+- **Participante e Observador**: Podem atualizar apenas suas próprias informações.
