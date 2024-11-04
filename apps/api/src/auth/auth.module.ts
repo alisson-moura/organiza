@@ -16,12 +16,12 @@ import { UsersModule } from 'src/users/users.module';
       useFactory: async (config: ConfigService) => {
         const jwtConfig = config.getOrThrow<{
           secret: string;
-          expiresAt: string;
+          expiresIn: string;
         }>('jwt');
         return {
           secret: jwtConfig.secret,
           signOptions: {
-            expiresIn: jwtConfig.expiresAt,
+            expiresIn: jwtConfig.expiresIn,
           },
         };
       },

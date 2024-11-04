@@ -4,9 +4,9 @@ import {
   Post,
   Body,
   Patch,
-  Param,
   Delete,
   UseGuards,
+  Request,
 } from '@nestjs/common';
 import { JwtAuthGuard } from '../auth/jwt-auth.guard';
 import { UsersService } from './users.service';
@@ -22,7 +22,7 @@ import {
 } from '@nestjs/swagger';
 import { UserDto } from './dto/user.dto';
 
-@Controller('users')
+@Controller('profile')
 @ApiTags('Perfil')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
@@ -38,16 +38,16 @@ export class UsersController {
     return this.usersService.create(createUserDto);
   }
 
-  @Get(':id')
+  @Get()
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   @ApiNotFoundResponse()
   @ApiOkResponse({ type: UserDto })
-  findOne(@Param('id') id: string) {
-    return this.usersService.findOne(id);
+  me(@Request() req) {
+    return this.usersService.findOne(req.user.id);
   }
 
-  @Patch(':id')
+  @Patch()
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   @ApiBadRequestResponse({
@@ -57,15 +57,15 @@ export class UsersController {
     description: 'Conta atualizada com sucesso',
   })
   @ApiNotFoundResponse()
-  update(@Param('id') id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.usersService.update(id, updateUserDto);
+  update(@Request() req, @Body() updateUserDto: UpdateUserDto) {
+    return this.usersService.update(req.user.id, updateUserDto);
   }
 
-  @Delete(':id')
+  @Delete()
   @UseGuards(JwtAuthGuard)
   @ApiBearerAuth()
   @ApiOkResponse()
-  remove(@Param('id') id: string) {
-    return this.usersService.remove(id);
+  remove(@Request() req) {
+    return this.usersService.remove(req.user.id);
   }
 }
