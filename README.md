@@ -101,26 +101,22 @@
 
 | Função                             | Líder | Organizador | Participante | Observador |
 |------------------------------------|-------|-------------|--------------|------------|
-| Criar conta                        | ✅    | ✅          | ✅           | ✅         |
-| Realizar login                     | ✅    | ✅          | ✅           | ✅         |
-| Recuperar senha                    | ✅    | ✅          | ✅           | ✅         |
-| Convidar membros                   | ✅    | ✅          | ❌           | ❌         |
-| Cancelar convite                   | ✅    | ✅          | ❌           | ❌         |
-| Criar grupo                        | ✅    | ✅          | ❌           | ❌         |
-| Ver grupo                          | ✅    | ✅          | ✅           | ✅         |
-| Atualizar grupo                    | ✅    | ✅          | ❌           | ❌         |
-| Finalizar lista                    | ✅    | ✅          | ❌           | ❌         |
-| Alterar função de membro           | ✅    | ❌          | ❌           | ❌         |
-| Ativar/desativar membro            | ✅    | ❌          | ❌           | ❌         |
+| Convidar membros                   | ✅    | ❌          | ❌           | ❌         |
+| Cancelar convite                   | ✅    | ❌          | ❌           | ❌         |
+| Atualizar grupo                    | ✅    | ❌          | ❌           | ❌         |
+| Desativar grupo                    | ✅    | ❌          | ❌           | ❌         |
 | Listar membros                     | ✅    | ✅          | ✅           | ✅         |
-| Atualizar informações de membros   | ✅    | ⚠️         | ⚠️          | ⚠️        |
+| Alterar função de membro           | ✅    | ❌          | ❌           | ❌         |
+| Remover membro do grupo            | ✅    | ❌          | ❌           | ❌         |
 | Criar listas                       | ✅    | ✅          | ❌           | ❌         |
 | Editar listas                      | ✅    | ✅          | ❌           | ❌         |
 | Ver listas                         | ✅    | ✅          | ✅           | ✅         |
+| Finalizar lista                    | ✅    | ✅          | ❌           | ❌         |
+| Remover lista                      | ✅    | ✅          | ❌           | ❌         |
 | Dar check/uncheck em itens         | ✅    | ✅          | ✅           | ❌         |
-| Atualizar informações da conta     | ✅    | ✅          | ✅           | ✅         |
-| Finalizar listas                   | ✅    | ✅          | ✅           | ✅         |
+| Ver itens                          | ✅    | ✅          | ✅           | ✅         |
+| Editar itens                       | ✅    | ✅          | ❌           | ❌         |
 
 ### Condições
-- **Líder e Organizador**: Podem atualizar informações de qualquer membro.
-- **Participante e Observador**: Podem atualizar apenas suas próprias informações.
+- **Líder**: Pode alterar o papel de outros membros dentro do grupo e remover membros do grupo.
+- **Todos os usuários**: Podem atualizar apenas suas próprias informações.
