@@ -6,7 +6,9 @@ import {
 import { User } from "./models/user";
 import { AppAbility } from "./app-ability";
 import { permissions } from "./permissions";
-import { listSchema } from "./models/list";
+export * from './models/user'
+export * from './models/role'
+
 
 export function defineAbilityFor(user: User): AppAbility {
   const createAppAbility = createMongoAbility as CreateAbility<AppAbility>;
