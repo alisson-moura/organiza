@@ -1,4 +1,4 @@
-import { plainToInstance } from 'class-transformer';
+import { plainToInstance } from "class-transformer";
 import {
   IsString,
   IsEnum,
@@ -7,7 +7,7 @@ import {
   Min,
   validateSync,
   Matches,
-} from 'class-validator';
+} from "class-validator";
 
 export const env = () => ({
   port: parseInt(process.env.PORT, 10) || 3000,
@@ -21,9 +21,9 @@ export const env = () => ({
 });
 
 enum Environment {
-  Development = 'development',
-  Production = 'production',
-  Test = 'test',
+  Development = "development",
+  Production = "production",
+  Test = "test",
 }
 
 class EnvironmentVariables {

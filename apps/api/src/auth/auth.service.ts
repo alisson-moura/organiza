@@ -1,8 +1,8 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
-import * as bcrypt from 'bcrypt';
-import { DatabaseService } from 'src/database/database.service';
-import { AuthEntity } from './entity/auth.entity';
+import { BadRequestException, Injectable } from "@nestjs/common";
+import { JwtService } from "@nestjs/jwt";
+import * as bcrypt from "bcrypt";
+import { DatabaseService } from "src/database/database.service";
+import { AuthEntity } from "./entity/auth.entity";
 
 @Injectable()
 export class AuthService {

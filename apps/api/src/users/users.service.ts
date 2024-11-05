@@ -2,11 +2,11 @@ import {
   BadRequestException,
   Injectable,
   NotFoundException,
-} from '@nestjs/common';
-import * as bcrypt from 'bcrypt';
-import { CreateUserDto } from './dto/create-user.dto';
-import { UpdateUserDto } from './dto/update-user.dto';
-import { DatabaseService } from 'src/database/database.service';
+} from "@nestjs/common";
+import * as bcrypt from "bcrypt";
+import { CreateUserDto } from "./dto/create-user.dto";
+import { UpdateUserDto } from "./dto/update-user.dto";
+import { DatabaseService } from "src/database/database.service";
 
 export const roundsOfHashing = 10;
 
@@ -21,7 +21,7 @@ export class UsersService {
 
     if (emailInUse != null) {
       throw new BadRequestException(
-        'Este e-mail já está em uso por outro usuário.',
+        "Este e-mail já está em uso por outro usuário.",
       );
     }
 
@@ -51,7 +51,7 @@ export class UsersService {
       where: { id },
     });
     if (user == null) {
-      throw new NotFoundException('Não encontramos nenhum perfil com este id.');
+      throw new NotFoundException("Não encontramos nenhum perfil com este id.");
     }
     return user;
   }
@@ -65,7 +65,7 @@ export class UsersService {
       });
       if (emailInUse != null) {
         throw new BadRequestException(
-          'Este e-mail já está em uso por outro usuário.',
+          "Este e-mail já está em uso por outro usuário.",
         );
       }
     }
