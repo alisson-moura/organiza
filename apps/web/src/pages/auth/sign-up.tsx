@@ -3,15 +3,8 @@ import { RxReload } from "react-icons/rx";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-import { FaListCheck } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardFooter,
-  CardHeader,
-} from "@/components/ui/card";
 import {
   Form,
   FormControl,
@@ -81,100 +74,89 @@ export function SignUpPage() {
   };
 
   return (
-    <div className="flex min-h-screen flex-col lg:flex-row justify-center">
-      <div className="flex w-full items-center justify-center p-4 lg:w-1/2">
-        <Card className="w-full max-w-md">
-          <CardHeader className="space-y-2 text-center">
-            <div className="flex justify-center">
-              <FaListCheck size={64} />
-            </div>
-            <h2 className="text-3xl font-bold">Organiza</h2>
-            <p className="text-sm text-muted-foreground">
-              Cadastre-se na nossa plataforma para organizar seus grupos e
-              listas
-            </p>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <Form {...form}>
-              <form
-                className="space-y-4"
-                onSubmit={form.handleSubmit(handleOnSubmit)}
-              >
-                <FormField
-                  control={form.control}
-                  name="name"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Nome</FormLabel>
-                      <FormControl>
-                        <Input
-                          placeholder="ex: João da Silva"
-                          required
-                          type="text"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormDescription>Seu nome e sobrenome.</FormDescription>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>E-mail</FormLabel>
-                      <FormControl>
-                        <Input
-                          placeholder="ex: joao@exemplo.com"
-                          required
-                          type="email"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormDescription>
-                        E-mail que deseja receber notificações.
-                      </FormDescription>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <FormField
-                  control={form.control}
-                  name="password"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Senha</FormLabel>
-                      <FormControl>
-                        <Input
-                          placeholder="******"
-                          required
-                          type="password"
-                          {...field}
-                        />
-                      </FormControl>
-                      <FormDescription>
-                        Senha para acessar a plataforma.
-                      </FormDescription>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-                <Button disabled={signUpRequest.isPending} className="w-full">
-                {signUpRequest.isPending  ? <RxReload className="mr-2 h-4 w-4 animate-spin"/> :  'Cadastrar'}
-                  </Button>
-              </form>
-            </Form>
-          </CardContent>
-          <CardFooter className="flex flex-col space-y-4">
-            <div className="text-sm text-center space-x-4">
-              <Link className="text-primary hover:underline" to="/">
-                Voltar para o Login
-              </Link>
-            </div>
-          </CardFooter>
-        </Card>
+    <div className="flex flex-col ">
+      <p className="text-sm text-muted-foreground mb-4 text-center">
+        Cadastre-se na nossa plataforma para organizar seus grupos e listas
+      </p>
+      <Form {...form}>
+        <form
+          className="space-y-4"
+          onSubmit={form.handleSubmit(handleOnSubmit)}
+        >
+          <FormField
+            control={form.control}
+            name="name"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Nome</FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder="ex: João da Silva"
+                    required
+                    type="text"
+                    {...field}
+                  />
+                </FormControl>
+                <FormDescription>Seu nome e sobrenome.</FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="email"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>E-mail</FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder="ex: joao@exemplo.com"
+                    required
+                    type="email"
+                    {...field}
+                  />
+                </FormControl>
+                <FormDescription>
+                  E-mail que deseja receber notificações.
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="password"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Senha</FormLabel>
+                <FormControl>
+                  <Input
+                    placeholder="******"
+                    required
+                    type="password"
+                    {...field}
+                  />
+                </FormControl>
+                <FormDescription>
+                  Senha para acessar a plataforma.
+                </FormDescription>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <Button disabled={signUpRequest.isPending} className="w-full">
+            {signUpRequest.isPending ? (
+              <RxReload className="mr-2 h-4 w-4 animate-spin" />
+            ) : (
+              "Cadastrar"
+            )}
+          </Button>
+        </form>
+      </Form>
+      <div className="space-x-4 mt-4 text-center">
+        <Link className="text-primary hover:underline" to="/">
+          Voltar para o Login
+        </Link>
       </div>
     </div>
   );
