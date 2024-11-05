@@ -52,16 +52,25 @@ export function SignUpPage() {
   });
 
   const handleOnSubmit = async (values: z.infer<typeof formSchema>) => {
-    await signUpRequest.mutateAsync({
-      data: values,
-    });
-    if (signUpRequest.isSuccess) {
+    try {
+      await signUpRequest.mutateAsync({
+        data: values,
+      });
       toast({
         title: "Conta criada com sucesso.",
         description: "Agora é só acessar e começar a organizar",
-        action: <ToastAction onClick={() => {navigate('/')}}  altText={"Login"}>Ir para o Login</ToastAction>
+        action: (
+          <ToastAction
+            onClick={() => {
+              navigate("/");
+            }}
+            altText={"Login"}
+          >
+            Ir para o Login
+          </ToastAction>
+        ),
       });
-    } else {
+    } catch (error) {
       toast({
         title: "Algo deu errado!",
         description: "Não conseguimos criar sua conta no momento",
