@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { RxReload } from "react-icons/rx";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
@@ -70,7 +71,7 @@ export function SignUpPage() {
           </ToastAction>
         ),
       });
-    } catch (error) {
+    } catch {
       toast({
         title: "Algo deu errado!",
         description: "Não conseguimos criar sua conta no momento",
@@ -160,7 +161,9 @@ export function SignUpPage() {
                     </FormItem>
                   )}
                 />
-                <Button className="w-full">Cadastrar</Button>
+                <Button disabled={signUpRequest.isPending} className="w-full">
+                {signUpRequest.isPending  ? <RxReload className="mr-2 h-4 w-4 animate-spin"/> :  'Cadastrar'}
+                  </Button>
               </form>
             </Form>
           </CardContent>

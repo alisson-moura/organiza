@@ -116,7 +116,7 @@ export function LoginPage() {
                   )}
                 />
                 <Button disabled={authRequest.isPending} className="w-full">
-                  {authRequest.isPending ? <RxReload className="mr-2 h-4 w-4 animate-spin"/>: 'Login'}
+                  {authRequest.isPending ? <RxReload className="mr-2 h-4 w-4 animate-spin"/> : 'Login'}
                 </Button>
               </form>
             </Form>
