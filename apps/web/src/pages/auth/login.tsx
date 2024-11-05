@@ -23,6 +23,8 @@ import { Input } from "@/components/ui/input";
 import { Link } from "react-router-dom";
 import { useToast } from "@/hooks/use-toast";
 import { useAuthControllerLogin } from "@/api/endpoints/auth/auth";
+import { useAuth } from "@/hooks/use-auth";
+
 
 const formSchema = z.object({
   email: z.string().email({ message: "Por favor, insira um e-mail válido." }),
@@ -33,6 +35,7 @@ const formSchema = z.object({
 });
 
 export function LoginPage() {
+  const { setToken } = useAuth();
   const navigate = useNavigate();
   const authRequest = useAuthControllerLogin();
   const { toast } = useToast();
@@ -47,10 +50,11 @@ export function LoginPage() {
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
-      await authRequest.mutateAsync({
+      const response = await authRequest.mutateAsync({
         data: values,
       });
-      navigate("/app");
+     setToken(response.data.accessToken)
+      navigate("/", { replace: true });
     } catch  {
       toast({
         title: "Algo deu errado!",
